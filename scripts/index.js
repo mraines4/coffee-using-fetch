@@ -1,11 +1,10 @@
 
-// when you click a coffee order, draw the details of the order to another part of the page
 // store the coffee data in localStorage
 // load the coffee data when the page loads, only retrieving it if there is no data in localStorage
 // add links with filtering by the first letter of the email (or coffee order, your choice)
 
 // const API_URL = 'https://dc-coffeerun.herokuapp.com/api/coffeeOrders';
-const API_URL = '/dummy.json'
+const API_URL = '/coffee.json'
 
 let allEmailArray = [];
 let allOrders;
@@ -67,6 +66,7 @@ function drawDetails (email) {
     detailArea.appendChild(sizeDiv)
     detailArea.appendChild(strengthDiv)
 
-
-
 }
+
+
+// store the coffee data in localStorage
