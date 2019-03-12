@@ -11,3 +11,43 @@ html, body {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.1);
     font-size: 24px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.index-container {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1em;
+    border: 3px solid chocolate;
+
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    justify-content: space-around;
+}
+
+.listing, .detail {
+    height: 100%;
+    background-color: gray;
+}
+
+.listing {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 3px solid chocolate;
+
+}
+
+.detail {
+    flex: 2;
+    border: 3px solid chocolate;
+    padding: 1em;
+}
