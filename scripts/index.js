@@ -22,4 +22,15 @@ fetch(API_URL)
     });
 
 function drawEmailToListing (keys) {
+    
+    keys.forEach(function(ea) {
+        const anchorElement = document.createElement('a');
+        anchorElement.textContent = ea;
+        const listItem = document.createElement('li');
+        listItem.appendChild(anchorElement);
+        const listArea = document.querySelector('[data-listing]')
+        listArea.appendChild(listItem);
+    })
+
 }
+
