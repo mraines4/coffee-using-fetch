@@ -1,7 +1,4 @@
 
-// store the coffee data in localStorage
-// load the coffee data when the page loads, only retrieving it if there is no data in localStorage
-// add links with filtering by the first letter of the email (or coffee order, your choice)
 
 // const API_URL = 'https://dc-coffeerun.herokuapp.com/api/coffeeOrders';
 const API_URL = '/coffee.json'
@@ -10,17 +7,22 @@ let allEmailArray = [];
 let allOrders;
 
 // fetch the API
-fetch(API_URL)
-    .then(function(j) {
-        return j.json();
-    })
-    .then(function(data) {
-        allOrders = data;
-        allEmailArray = Object.keys(data);
-        // console.log(allEmailArray)
-        // console.log(allOrders)
-        drawEmailToListing(allEmailArray);
-    });
+
+function fetchData() {
+    fetch(API_URL)
+        .then(function(j) {
+            return j.json();
+        })
+        .then(function(data) {
+            allOrders = data;
+            allEmailArray = Object.keys(data);
+            // console.log(allEmailArray)
+            // console.log(allOrders)
+            drawEmailToListing(allEmailArray);
+            storeData(allOrders);
+        });
+}
+
 
 
 // draw all the email addresses associated with the coffee orders to the page in a list
@@ -70,3 +72,40 @@ function drawDetails (email) {
 
 
 // store the coffee data in localStorage
+function storeData(coffeeData) {
+    const jsonCoffee = JSON.stringify(coffeeData);
+    localStorage.setItem('coffee', jsonCoffee);
+}
+
+// load the coffee data when the page loads, only retrieving it if there is no data in localStorage
+
+function retreiveData() {
+    const jsonCoffee = localStorage.getItem('coffee');
+
+    const coffeeData = JSON.parse(jsonCoffee);
+    if(coffeeData) {
+        console.log('you haz data')
+    } else {
+        console.log('no data 4 u')
+    }
+
+    return coffeeData;
+}
+
+function initialize() {
+    let dataInStorage = retreiveData();
+    if (dataInStorage) {
+        allEmailArray = Object.keys(dataInStorage);
+        allOrders = dataInStorage;
+        drawEmailToListing(allEmailArray);
+        storeData(allOrders);
+        console.log('you got data')
+    } else {
+        console.log('nodata')
+        fetchData();
+    }
+}
+
+initialize();
+
+// add links with filtering by the first letter of the email (or coffee order, your choice)
